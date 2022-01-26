@@ -30,14 +30,13 @@ public class DefaultCreditCard : CreditCard {
         if(!isIt(cardCode: cardCode)){
             return false
         }
-        return Luhn10.isValid(cardCode)
+        return cardCode.count == size && Luhn10.isValid(cardCode)
     }
     
     func isIt(cardCode: String) -> Bool {
-        var isMe = prefix.contains { value in
+        let isMe = prefix.contains { value in
             return checkMatchCreditCardPrefix(cardCode, prefix: value)
         }
-        isMe = isMe && cardCode.count == size
         return isMe
     }
     
