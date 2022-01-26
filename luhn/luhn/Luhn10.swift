@@ -10,6 +10,13 @@ import Foundation
 
 
 public class Luhn10 {
+    public static func isValid(_ value: String)-> Bool {
+        guard let sumNumber = sum(value) else {
+            return false
+        }
+        return sumNumber % 10 == 0
+    }
+    
     internal static func sum(_ value: String) -> Int? {
         func sumEachDigit(_ number: Int) -> Int {
             var sum = 0

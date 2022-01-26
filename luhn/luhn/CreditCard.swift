@@ -11,7 +11,7 @@ public protocol CreditCard {
     var name: String { get }
     var prefix: [String] { get }
     var size: Int { get }
-    func sum(cardCode: String) -> Int?
+    func isValid(cardCode: String) -> Bool
 }
 
 public class DefaultCreditCard : CreditCard {
@@ -26,11 +26,11 @@ public class DefaultCreditCard : CreditCard {
         self.size = size
     }
     
-    public func sum(cardCode: String) -> Int? {
+    public func isValid(cardCode: String) -> Bool {
         if(!isIt(cardCode: cardCode)){
-            return nil
+            return false
         }
-        return Luhn10.sum(cardCode)
+        return Luhn10.isValid(cardCode)
     }
     
     func isIt(cardCode: String) -> Bool {

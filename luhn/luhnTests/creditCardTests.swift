@@ -43,7 +43,6 @@ class creditCardTests: XCTestCase {
         let code = "5555555555554443"
         let card = CreditCardStrategy.detectCreditCard(code)
         XCTAssertEqual(card?.name, "Mastercard")
-        let sum = card?.sum(cardCode: code)
-        XCTAssertNil(sum)
+        XCTAssertFalse(card!.isValid(cardCode: code))
     }
 }
