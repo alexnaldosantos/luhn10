@@ -45,12 +45,25 @@ public class DefaultCreditCard : CreditCard {
     }
 }
 
+public final class Visa : DefaultCreditCard {
+    
+    public init() {
+        super.init(name: "Visa", prefix: ["4"], size: 0)
+    }
+    
+    override public func isValid(cardCode: String) -> Bool {
+        if(!isIt(cardCode: cardCode)){
+            return false
+        }
+        return (cardCode.count == 13 || cardCode.count == 16) && Luhn10.isValid(cardCode)
+    }
+}
+
 public class CreditCardStrategy {
     
     static var creditCards = [
         DefaultCreditCard(name: "Mastercard", prefix: ["51","52","53","54","55"], size: 16),
-        DefaultCreditCard(name: "Visa", prefix: ["4"], size: 13),
-        DefaultCreditCard(name: "Visa", prefix: ["4"], size: 16),
+        Visa(),
         DefaultCreditCard(name: "Amex", prefix: ["34","37"], size: 15),
         DefaultCreditCard(name: "Diners", prefix: ["30","36","38"], size: 14),
         DefaultCreditCard(name: "Discover", prefix: ["6011"], size: 16),
