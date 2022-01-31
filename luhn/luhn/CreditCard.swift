@@ -61,9 +61,13 @@ public final class Visa : DefaultCreditCard {
 
 public class CreditCardStrategy {
     
+    /*
+    A ordem da lista é importante porque alguns prefixos são aparentemente compostos por outros.
+    Ex: "3" (JCB) é o mesmo inicial do Amex e Diners. Por isso, na lista, o JCB deve ser o último a ser verificado.
+    * */
     static var creditCards = [
         DefaultCreditCard(name: "Mastercard", prefix: ["51","52","53","54","55"], size: 16),
-        Visa(),
+        Visa() /* especial porque o mesmo código tem 2 tamanhos */,
         DefaultCreditCard(name: "Amex", prefix: ["34","37"], size: 15),
         DefaultCreditCard(name: "Diners", prefix: ["30","36","38"], size: 14),
         DefaultCreditCard(name: "Discover", prefix: ["6011"], size: 16),

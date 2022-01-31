@@ -160,7 +160,7 @@ class creditCardTests: XCTestCase {
     // Discover
     
     func test_detect_valid_discover_prefix_but_invalid_code() throws {
-        let expected = "Diners"
+        let expected = "Discover"
         let card = CreditCardStrategy.detectCreditCard("6011")
         XCTAssertEqual(card?.name, expected)
         XCTAssertFalse(card!.isValid(cardCode: "6011"))
